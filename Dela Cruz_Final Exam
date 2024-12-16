@@ -1,0 +1,109 @@
+import java.util.Stack;
+
+class Creature {
+    String name;
+    int powerLevel;
+
+    public Creature(String name, int powerLevel) {
+        this.name = name;
+        this.powerLevel = powerLevel;
+    }
+
+    @Override
+    public String toString() {
+        return name + " - " + powerLevel;
+    }
+}
+
+public class CreatureOrganizer {
+
+    // Bubble Sort - Descending order of power levels
+    public static void bubbleSortDescending(Creature[] creatures) {
+        int n = creatures.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (creatures[j].powerLevel < creatures[j + 1].powerLevel) {
+                    // Swap
+                    Creature temp = creatures[j];
+                    creatures[j] = creatures[j + 1];
+                    creatures[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // Selection Sort - Ascending order of power levels
+    public static void selectionSortAscending(Creature[] creatures) {
+        int n = creatures.length;
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (creatures[j].powerLevel < creatures[minIndex].powerLevel) {
+                    minIndex = j;
+                }
+            }
+            // Swap
+            Creature temp = creatures[minIndex];
+            creatures[minIndex] = creatures[i];
+            creatures[i] = temp;
+        }
+    }
+
+    // Display creatures array
+    public static void displayCreatures(Creature[] creatures) {
+        for (Creature creature : creatures) {
+            System.out.println(creature);
+        }
+    }
+
+    // Stack Implementation: Push and pop creatures
+    public static void stackDisplay(Creature[] creatures) {
+        Stack<Creature> stack = new Stack<>();
+
+        // Push all creatures onto the stack
+        for (Creature creature : creatures) {
+            stack.push(creature);
+        }
+
+        // Pop and display creatures
+        System.out.println("\n*** Stack Implementation: Popping Creatures ***");
+        while (!stack.isEmpty()) {
+            Creature popped = stack.pop();
+            System.out.println("Popped: " + popped);
+        }
+    }
+
+    public static void main(String[] args) {
+        // Fixed input data
+        Creature[] creatures = {
+            new Creature("Dragon", 95),
+            new Creature("Griffin", 88),
+            new Creature("Unicorn", 78),
+            new Creature("Phoenix", 92),
+            new Creature("Centaur", 85)
+        };
+        
+         // Selection Sort - Ascending order
+        Creature[] creaturesForBubbleSort = {
+            new Creature("Dragon", 95),
+            new Creature("Phoenix", 92),
+            new Creature("Griffin", 88),
+            new Creature("Centaur", 85),
+            new Creature("Unicorn", 78)
+        };
+
+        // Bubble Sort - Descending Order
+        bubbleSortDescending(creaturesForBubbleSort);
+        System.out.println("*** Bubble Sort: Descending Order by Power Level ***");
+        displayCreatures(creaturesForBubbleSort);
+
+        // Select Sort - Ascending Order
+        selectionSortAscending(creatures);
+        System.out.println("\n*** Selection Sort: Ascending Order by Power Level ***");
+        displayCreatures(creatures);
+
+        // Use stack to display in Anscending Order
+        System.out.println();
+        stackDisplay(creatures);
+    }
+}
