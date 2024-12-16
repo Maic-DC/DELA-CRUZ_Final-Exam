@@ -1,109 +1,89 @@
 import java.util.Stack;
 
-class Creature {    // class to represent a Creatures with Name and Power level
-    String name;
-    int powerLevel;
+public class Main {
+    public static void main(String[] args) {
+        // Define the creatures and their power levels
+        String[] creatures = {"Dragon", "Griffin", "Unicorn", "Phoenix", "Centaur"};
+        int[] powerLevels = {95, 88, 78, 92, 85};
 
-    public Creature(String name, int powerLevel) { 
-        this.name = name;
-        this.powerLevel = powerLevel;
+        // Bubble Sort: Descending order
+        System.out.println("* Bubble Sort: Descending Order by Power Level *");
+        bubbleSortDescending(creatures, powerLevels);
+        displayCreatures(creatures, powerLevels);
+
+        // Selection Sort: Ascending order
+        System.out.println("\n*** Selection Sort: Ascending Order by Power Level *");
+        selectionSortAscending(creatures, powerLevels);
+        displayCreatures(creatures, powerLevels);
+
+        // Stack Implementation
+        System.out.println("\n*** Stack Implementation: Popping Creatures *");
+        Stack<String> stack = pushToStack(creatures, powerLevels);
+        popFromStack(stack);
     }
 
-    @Override
-    public String toString() {
-        return name + " - " + powerLevel;
-    }
-}
-
-public class CreatureOrganizer {
-
-    // Bubble Sort - Descending order of power levels
-    public static void BubbleSortDescending(Creature[] creatures) {
-        int n = creatures.length;
+    // Bubble Sort for descending order
+    public static void bubbleSortDescending(String[] creatures, int[] powerLevels) {
+        int n = powerLevels.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
-                if (creatures[j].powerLevel < creatures[j + 1].powerLevel) {
-                    // Swap
-                    Creature temp = creatures[j];
+                if (powerLevels[j] < powerLevels[j + 1]) {
+                    // Swap power levels
+                    int temp = powerLevels[j];
+                    powerLevels[j] = powerLevels[j + 1];
+                    powerLevels[j + 1] = temp;
+
+                    // Swap corresponding creatures
+                    String tempCreature = creatures[j];
                     creatures[j] = creatures[j + 1];
-                    creatures[j + 1] = temp;
+                    creatures[j + 1] = tempCreature;
                 }
             }
         }
     }
 
-    // Selection Sort - Ascending order of Power levels
-    public static void SelectionSortAscending(Creature[] creatures) {
-        int n = creatures.length;
+    // Selection Sort for ascending order
+    public static void selectionSortAscending(String[] creatures, int[] powerLevels) {
+        int n = powerLevels.length;
         for (int i = 0; i < n - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < n; j++) {
-                if (creatures[j].powerLevel < creatures[minIndex].powerLevel) {
+                if (powerLevels[j] < powerLevels[minIndex]) {
                     minIndex = j;
                 }
             }
-            // Swap
-            Creature temp = creatures[minIndex];
+            // Swap power levels
+            int temp = powerLevels[minIndex];
+            powerLevels[minIndex] = powerLevels[i];
+            powerLevels[i] = temp;
+
+            // Swap corresponding creatures
+            String tempCreature = creatures[minIndex];
             creatures[minIndex] = creatures[i];
-            creatures[i] = temp;
+            creatures[i] = tempCreature;
         }
     }
 
-    // Display the Creatures Array
-    public static void displayCreatures(Creature[] creatures) {
-        for (Creature creature : creatures) {
-            System.out.println(creature);
+    // Push creatures to stack
+    public static Stack<String> pushToStack(String[] creatures, int[] powerLevels) {
+        Stack<String> stack = new Stack<>();
+        for (int i = 0; i < creatures.length; i++) {
+            stack.push(creatures[i] + " - " + powerLevels[i]);
         }
+        return stack;
     }
 
-    // Stack Implementation: Push and Pop creatures
-    public static void StackDisplay(Creature[] creatures) {
-        Stack<Creature> stack = new Stack<>();
-
-        // Push all creatures into the Stack
-        for (Creature creature : creatures) {
-            stack.push(creature);
-        }
-
-        // Pop and Display creatures
-        System.out.println("\n*** Stack Implementation: Popping Creatures ***");
+    // Pop creatures from stack and display
+    public static void popFromStack(Stack<String> stack) {
         while (!stack.isEmpty()) {
-            Creature popped = stack.pop();
-            System.out.println("Popped: " + popped);
+            System.out.println("Popped: " + stack.pop());
         }
     }
 
-    public static void main(String[] args) {
-        // Fixed input data
-        Creature[] creatures = {
-            new Creature("Dragon", 95),
-            new Creature("Griffin", 88),
-            new Creature("Unicorn", 78),
-            new Creature("Phoenix", 92),
-            new Creature("Centaur", 85)
-        };
-        
-         // Bubble Sort - Ascending order
-        Creature[] CreaturesForBubbleSort = {
-            new Creature("Dragon", 95),
-            new Creature("Phoenix", 92),
-            new Creature("Griffin", 88),
-            new Creature("Centaur", 85),
-            new Creature("Unicorn", 78)
-        };
-
-        // Bubble Sort - Descending Order
-        BubbleSortDescending(CreaturesForBubbleSort);
-        System.out.println("*** Bubble Sort: Descending Order by Power Level ***");
-        displayCreatures(CreaturesForBubbleSort);
-
-        // Selection Sort - Ascending Order
-        SelectionSortAscending(creatures);
-        System.out.println("\n*** Selection Sort: Ascending Order by Power Level ***");
-        displayCreatures(creatures);
-
-        // Use Stack to display in Ascending Order
-        System.out.println();
-        StackDisplay(creatures);
+    // Display creatures and their power levels
+    public static void displayCreatures(String[] creatures, int[] powerLevels) {
+        for (int i = 0; i < creatures.length; i++) {
+            System.out.println(creatures[i] + " - " + powerLevels[i]);
+        }
     }
 }
