@@ -1,10 +1,10 @@
 import java.util.Stack;
 
-class Creature {
+class Creature {    // Creature class to represent a Creatures with Name and Power level
     String name;
     int powerLevel;
 
-    public Creature(String name, int powerLevel) {
+    public Creature(String name, int powerLevel) { 
         this.name = name;
         this.powerLevel = powerLevel;
     }
@@ -32,7 +32,7 @@ public class CreatureOrganizer {
         }
     }
 
-    // Selection Sort - Ascending order of power levels
+    // Selection Sort - Ascending order of Power levels
     public static void selectionSortAscending(Creature[] creatures) {
         int n = creatures.length;
         for (int i = 0; i < n - 1; i++) {
@@ -49,23 +49,23 @@ public class CreatureOrganizer {
         }
     }
 
-    // Display creatures array
+    // Display the Creatures Array
     public static void displayCreatures(Creature[] creatures) {
         for (Creature creature : creatures) {
             System.out.println(creature);
         }
     }
 
-    // Stack Implementation: Push and pop creatures
+    // Stack Implementation: Push and Pop creatures
     public static void stackDisplay(Creature[] creatures) {
         Stack<Creature> stack = new Stack<>();
 
-        // Push all creatures onto the stack
+        // Push all creatures onto the Stack
         for (Creature creature : creatures) {
             stack.push(creature);
         }
 
-        // Pop and display creatures
+        // Pop and Display creatures
         System.out.println("\n*** Stack Implementation: Popping Creatures ***");
         while (!stack.isEmpty()) {
             Creature popped = stack.pop();
@@ -102,7 +102,7 @@ public class CreatureOrganizer {
         System.out.println("\n*** Selection Sort: Ascending Order by Power Level ***");
         displayCreatures(creatures);
 
-        // Use stack to display in Anscending Order
+        // Use Stack to display in Ascending Order
         System.out.println();
         stackDisplay(creatures);
     }
