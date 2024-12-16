@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-class Creature {    // Creature class to represent a Creatures with Name and Power level
+class Creature {    // class to represent a Creatures with Name and Power level
     String name;
     int powerLevel;
 
@@ -18,7 +18,7 @@ class Creature {    // Creature class to represent a Creatures with Name and Pow
 public class CreatureOrganizer {
 
     // Bubble Sort - Descending order of power levels
-    public static void bubbleSortDescending(Creature[] creatures) {
+    public static void BubbleSortDescending(Creature[] creatures) {
         int n = creatures.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -33,7 +33,7 @@ public class CreatureOrganizer {
     }
 
     // Selection Sort - Ascending order of Power levels
-    public static void selectionSortAscending(Creature[] creatures) {
+    public static void SelectionSortAscending(Creature[] creatures) {
         int n = creatures.length;
         for (int i = 0; i < n - 1; i++) {
             int minIndex = i;
@@ -57,10 +57,10 @@ public class CreatureOrganizer {
     }
 
     // Stack Implementation: Push and Pop creatures
-    public static void stackDisplay(Creature[] creatures) {
+    public static void StackDisplay(Creature[] creatures) {
         Stack<Creature> stack = new Stack<>();
 
-        // Push all creatures onto the Stack
+        // Push all creatures into the Stack
         for (Creature creature : creatures) {
             stack.push(creature);
         }
@@ -83,8 +83,8 @@ public class CreatureOrganizer {
             new Creature("Centaur", 85)
         };
         
-         // Selection Sort - Ascending order
-        Creature[] creaturesForBubbleSort = {
+         // Bubble Sort - Ascending order
+        Creature[] CreaturesForBubbleSort = {
             new Creature("Dragon", 95),
             new Creature("Phoenix", 92),
             new Creature("Griffin", 88),
@@ -93,17 +93,17 @@ public class CreatureOrganizer {
         };
 
         // Bubble Sort - Descending Order
-        bubbleSortDescending(creaturesForBubbleSort);
+        BubbleSortDescending(CreaturesForBubbleSort);
         System.out.println("*** Bubble Sort: Descending Order by Power Level ***");
-        displayCreatures(creaturesForBubbleSort);
+        displayCreatures(CreaturesForBubbleSort);
 
-        // Select Sort - Ascending Order
-        selectionSortAscending(creatures);
+        // Selection Sort - Ascending Order
+        SelectionSortAscending(creatures);
         System.out.println("\n*** Selection Sort: Ascending Order by Power Level ***");
         displayCreatures(creatures);
 
         // Use Stack to display in Ascending Order
         System.out.println();
-        stackDisplay(creatures);
+        StackDisplay(creatures);
     }
 }
